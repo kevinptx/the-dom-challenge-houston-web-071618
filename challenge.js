@@ -91,9 +91,13 @@ function displayComments() {
 }
 
 function displayLikes() {
+    while (likeList.firstChild) {
+        likeList.removeChild(likeList.firstChild);
+    }
     const likes = state.getLikes();
     for (var key in likes) {
-        const elem = document.createTextNode(`• ${key} has been liked ${likes[key]} times <br />`);
-        likeList.appendChild(elem);
+        const p = document.createElement('p')
+        p.innerText = `• ${key} has been liked ${likes[key]} times`
+        likeList.appendChild(p);
     }
 }
